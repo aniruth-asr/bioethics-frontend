@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioEthics Radar</title>
+  <meta name="description" content="AI-powered ethical compliance review for research papers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page">
+    <header class="top">
+      <div class="brand">
+        <div class="brand-name">BioEthics Radar</div>
+        <div class="brand-sub">AI-powered ethical compliance review for research papers</div>
+      </div>
+      <div class="meta" id="metaStatus">Ready</div>
+    </header>
+
+    <main class="main">
+      <section class="panel" id="inputPanel" aria-label="Upload or paste a research paper">
+        <div class="panel-title">Upload paper or paste text</div>
+        <div class="panel-sub">PDF · DOCX · TXT · or paste full manuscript text. Nothing is stored.</div>
+
+        <div class="drop" id="dropZone" role="button" tabindex="0" aria-label="Drop a file to analyze">
+          <input type="file" id="fileInput" accept=".pdf,.docx,.txt" aria-label="Choose file" />
+          <div class="drop-inner">
+            <div class="drop-primary">Drop file here</div>
+            <div class="drop-secondary">or click to browse</div>
+          </div>
+        </div>
+
+        <div class="or">or</div>
+
+        <textarea id="paperText" rows="10"
+          placeholder="Paste your paper text here (include Methods and Ethics/Compliance if present)…"></textarea>
+
+        <div class="actions">
+          <button class="btn" id="analyzeBtn" disabled type="button">Analyze</button>
+          <button class="btn btn-ghost" id="clearBtn" type="button">Clear</button>
+          <button class="btn btn-ghost" id="sampleBtn" type="button">Load sample</button>
+        </div>
+
+        <div class="note">
+          Scoring is 0–60. Absence is neutral; only clear violations trigger heavy penalties. Evidence is quoted
+          verbatim from your input and matched guideline clauses.
+        </div>
+      </section>
+
+      <section class="results" id="results" hidden aria-label="Audit results dashboard">
+        <div class="results-head">
+          <div>
+            <div class="results-title">Results</div>
+            <div class="results-sub" id="resultsSubtitle">—</div>
+          </div>
+          <button class="btn btn-ghost" id="newBtn" type="button">New analysis</button>
+        </div>
+
+        <div class="bars" id="bars"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>For pre-submission review only. Not a substitute for IRB/IBC approvals.</div>
+    </footer>
+  </div>
+
+  <div class="overlay" id="overlay" hidden aria-live="polite" aria-label="Analysis in progress">
+    <div class="overlay-inner">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="overlay-title">Analyzing</div>
+      <div class="overlay-sub" id="overlayStage">Reading document…</div>
+      <div class="loading-strips" aria-hidden="true">
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
